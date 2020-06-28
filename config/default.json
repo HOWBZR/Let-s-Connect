@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://Coons123:Coons123@lets-connect-2av22.mongodb.net/Let'sConnectDB?retryWrites=true&w=majority",
+    "jwtSecret": "mysecrettoken"
+}
