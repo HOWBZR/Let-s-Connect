@@ -1,4 +1,7 @@
 {
     "mongoURI": "mongodb+srv://Coons123:Coons123@lets-connect-2av22.mongodb.net/Let'sConnectDB?retryWrites=true&w=majority",
-    "jwtSecret": "mysecrettoken"
+    "jwtSecret": "mysecrettoken",
+    "githubClientId": "44cc5b7fb1c0fbaea938",
+    "githubSecret": "469b9de85ddac031d7ff259c11f377d3e35105a1",
+    "githubToken": "22ac5351622beb0a86f63966d9e0f29cbf88d6ef"
 }
