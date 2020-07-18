@@ -6,7 +6,7 @@ const Profile = require("../../models/Profile");
 const User = require("../../models/User");
 const request = require("request");
 const config = require("config");
-const axios = require("axios")
+const axios = require("axios");
 
 //@route    GET api/profile/me
 //@desc     Get current user profile
@@ -32,7 +32,7 @@ router.get("/me", auth, async (req, res) => {
 //@desc     Create or update user profile
 //@access   Private
 
-router.put(
+router.post(
   "/",
   [
     auth,
@@ -211,7 +211,7 @@ router.post(
   }
 );
 
-//@route    DELET api/profile/experience/:exp_id
+//@route    DELETE api/profile/experience/:exp_id
 //@desc     Delete experience from profile
 //@access   Private
 router.delete("/experience/:exp_id", auth, async (req, res) => {
