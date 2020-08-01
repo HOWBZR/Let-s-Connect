@@ -4,6 +4,7 @@ const auth = require("../../middleware/auth");
 const { check, validationResult } = require("express-validator");
 const Profile = require("../../models/Profile");
 const User = require("../../models/User");
+const Post = require("../../models/Post");
 const request = require("request");
 const config = require("config");
 const axios = require("axios");
@@ -108,6 +109,19 @@ router.post(
   }
 );
 
+//@route GET api/profile
+//@desc Get all profiles
+//@access Public
+router.get('/', async (req, res) => {
+  try {
+    const profiles = await Profile.find().populate("user", ["name", "avatar"]);
+    res.json(profiles)
+  } catch (err) {
+    console.error(err.message);
+    res.status(500).send("server error")
+  }
+})
+
 //@route    GET api/profile/user/:user_id
 //@desc     Get profile by user id
 //@access   Public
@@ -135,13 +149,14 @@ router.get("/user/:user_id", async (req, res) => {
 //@access   Private
 
 router.delete("/", auth, async (req, res) => {
-  //@todo - remove users posts
-
   //Remove profile
   try {
+    //remove users posts
+    await Post.deleteMany({ user: req.user.id });
+
     await Profile.findOneAndRemove({ user: req.user.id });
     //Remove User
-    await Profile.findOneAndRemove({ _id: req.user.id });
+    await User.findOneAndRemove({ _id: req.user.id });
 
     res.json({ msg: "User deleted" });
   } catch (err) {
